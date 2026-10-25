@@ -287,7 +287,8 @@ footer b{font-family:var(--serif);font-weight:500;font-size:20px;color:var(--cre
 .modal.aberto{display:grid}
 .modal video{display:none;width:min(420px,92vw);max-height:86vh;background:#000}
 .modal.mp4 video{display:block}.modal.mp4 iframe{display:none}
-.modal.ig iframe{aspect-ratio:auto;height:86vh;width:min(420px,92vw);background:#fff}
+.modal.ig iframe{aspect-ratio:auto;height:min(86vh,760px);width:min(420px,92vw);background:#fff}
+@media(max-width:600px){.modal{padding:64px 10px 10px}.modal .moldura{padding:6px 6px 16px}.modal.ig iframe{width:calc(100vw - 32px);height:calc(100vh - 110px)}.modal video,.modal iframe{width:calc(100vw - 32px);max-height:calc(100vh - 110px)}.modal button{top:10px;right:10px}}
 .modal iframe{width:min(420px,92vw);aspect-ratio:9/16;max-height:86vh;border:0;background:#000}
 .modal .moldura{background:var(--papel);padding:10px 10px 40px}
 .modal button{position:absolute;top:16px;right:16px;width:48px;height:48px;border-radius:50%;border:0;background:var(--creme);cursor:pointer;font-size:24px}
@@ -685,6 +686,7 @@ const V={
  p_clear:{marca:'Clear Man',titulo:'Com Paulo',id:'1BxaYEFHtH7OAa_X6MBh5j2G02gHScesa'},
  p_diamond:{marca:'Diamond',titulo:'Prova social, com Paulo',id:'14CQAp_TDKZ2tdmBVaO9v-zQ_wgJn8jSz'},
  p_gym:{marca:'Vida ativa',titulo:'Esposo fitness',id:'1HT81YoZMm97Jihx-Nknwzl_Nq22g8TMP'},
+ trip_ig:{marca:'UGC Trip',titulo:'Jericoacoara, roteiro completo',ig:'Dd1IA-gPK65',capa:'capa-trip-jeri.jpg'},
  secinta:{marca:'Secinta',titulo:'UGC de moda modeladora',ig:'Da1NsQBsgkA',capa:'capa-secinta.jpg'},
  apres:{marca:'Prazer, Hellen',titulo:'Vídeo de apresentação',id:'1S9T33jJIvkDpOTYJlsPNoY9DesZlE8px'}
 };
@@ -699,7 +701,7 @@ const NICHOS=[
  {nome:'Casal',videos:[V.p_diamond,V.p_act,V.p_clear,V.p_gym,V.c_rotina,V.c_pizza]},
  {nome:'Experiências',videos:[V.c_gestante,V.c_clinica,V.c_personal,V.c_instal,V.c_vidro,V.c_pov,V.intelivo]},
  {nome:'Tecnologia e Conectividade',videos:[V.claro,V.c_holasim,V.validapay,V.meliuz,V.c_iphone,V.c_micro,V.c_fone,V.c_tripe]},
- {nome:'UGC Trip',videos:[V.c_trip]}
+ {nome:'UGC Trip',videos:[V.trip_ig,V.c_trip]}
 ];
 const DESTAQUES=[V.neston,V.secinta,V.cerave];
 
@@ -725,7 +727,7 @@ mostra(0);
 document.getElementById('ant').onclick=()=>trilho.scrollBy({left:-trilho.clientWidth*.8,behavior:'smooth'});
 document.getElementById('prox').onclick=()=>trilho.scrollBy({left:trilho.clientWidth*.8,behavior:'smooth'});
 const dv=document.getElementById('destVideos');DESTAQUES.forEach(v=>dv.appendChild(card(v)));
-document.getElementById('apresVideo').appendChild(card(V.apres));document.getElementById('tripVideo').appendChild(card(V.c_trip));
+document.getElementById('apresVideo').appendChild(card(V.apres));document.getElementById('tripVideo').appendChild(card(V.trip_ig));
 
 const modal=document.getElementById('modal'),mv=document.getElementById('modalVideo');
 const mp=document.getElementById('modalMp4');
