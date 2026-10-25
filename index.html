@@ -75,7 +75,7 @@ h2{font-size:clamp(40px,5.4vw,68px)}
 .polas .pola{position:absolute;width:56%}
 .polas .p1{left:0;top:70px;transform:rotate(-6deg)}
 .polas .p2{left:22%;top:0;transform:rotate(2deg);z-index:2;width:60%}
-.polas .p3{right:0;top:120px;transform:rotate(7deg)}
+.polas .p3{right:-3%;top:150px;transform:rotate(7deg);z-index:3}
 .polas .pola{transition:transform .4s}
 .polas .pola:hover{z-index:3;transform:rotate(0) scale(1.03)}
 .capa-pe{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 24px;margin-top:28px;padding-top:18px;border-top:1px solid rgba(30,26,24,.18);font-size:15px;color:#4A433F}
@@ -337,7 +337,7 @@ footer b{font-family:var(--serif);font-weight:500;font-size:20px;color:var(--cre
         <div class="polas" aria-hidden="false">
           <figure class="pola p1" style="margin:0"><img src="viagem-paris.jpg" alt="Hellen em Paris"><figcaption>viagens</figcaption></figure>
           <figure class="pola p2" style="margin:0"><img src="foto-hero.jpg" alt="Hellen Dine sorrindo, de vestido rosa" fetchpriority="high"><figcaption>eu</figcaption></figure>
-          <figure class="pola p3" style="margin:0"><img src="foto-maternidade.jpg" alt="Hellen e o filho em uma selfie" style="object-position:center 40%"><figcaption>maternidade</figcaption></figure>
+          <figure class="pola p3" style="margin:0"><img src="foto-maternidade.jpg" alt="Hellen e o filho em uma selfie" style="object-position:center 45%"><figcaption>maternidade</figcaption></figure>
         </div>
       </div>
       <div class="capa-pe"><span>Cada conteúdo é um capítulo · maternidade, viagens, rotina</span><span><b>+80</b> marcas · <b>+20 mil</b> seguidores · <b>60,9 mil</b> views em um Reels</span></div>
@@ -472,7 +472,7 @@ footer b{font-family:var(--serif);font-weight:500;font-size:20px;color:var(--cre
         <div class="destinos"><span>França</span><span>Bélgica</span><span>Alemanha</span><span>Luxemburgo</span><span>Itália</span><span>Espanha</span><span>Suíça</span><span>Estados Unidos</span><span>Ceará</span><span>Amazonas</span></div>
       </div>
       <div style="display:flex;gap:26px;align-items:flex-start;flex-wrap:wrap">
-      <div id="tripVideo" style="rotate:-2deg"></div>
+      <div id="tripVideo" style="display:flex;gap:14px;rotate:-2deg"></div>
       <ul>
         <li>Hotéis, pousadas e resorts</li><li>Restaurantes e cafés</li><li>Agências e destinos turísticos</li><li>Experiências e passeios</li><li>Vídeos, fotos lifestyle e stories</li><li>Cobertura completa da viagem</li>
       </ul>
@@ -686,7 +686,7 @@ const V={
  p_clear:{marca:'Clear Man',titulo:'Com Paulo',id:'1BxaYEFHtH7OAa_X6MBh5j2G02gHScesa'},
  p_diamond:{marca:'Diamond',titulo:'Prova social, com Paulo',id:'14CQAp_TDKZ2tdmBVaO9v-zQ_wgJn8jSz'},
  p_gym:{marca:'Vida ativa',titulo:'Esposo fitness',id:'1HT81YoZMm97Jihx-Nknwzl_Nq22g8TMP'},
- trip_ig:{marca:'UGC Trip',titulo:'Jericoacoara, roteiro completo',ig:'Dd1IA-gPK65',capa:'capa-trip-jeri.jpg'},
+ trip_ig:{marca:'Jericoacoara',titulo:'UGC de passeio',ig:'Dd1IA-gPK65',capa:'capa-trip-jeri.jpg'},
  secinta:{marca:'Secinta',titulo:'UGC de moda modeladora',ig:'Da1NsQBsgkA',capa:'capa-secinta.jpg'},
  apres:{marca:'Prazer, Hellen',titulo:'Vídeo de apresentação',id:'1S9T33jJIvkDpOTYJlsPNoY9DesZlE8px'}
 };
@@ -699,9 +699,9 @@ const NICHOS=[
  {nome:'Moda e Acessórios',videos:[V.secinta,V.c_vestido,V.c_colar,V.c_academia,V.c_calca]},
  {nome:'Casa e Organização',videos:[V.allnutri,V.neston,V.azulim,V.lava1,V.lava2]},
  {nome:'Casal',videos:[V.p_diamond,V.p_act,V.p_clear,V.p_gym,V.c_rotina,V.c_pizza]},
- {nome:'Experiências',videos:[V.c_gestante,V.c_clinica,V.c_personal,V.c_instal,V.c_vidro,V.c_pov,V.intelivo]},
+ {nome:'Experiências',videos:[V.trip_ig,V.c_gestante,V.c_clinica,V.c_personal,V.c_instal,V.c_vidro,V.c_pov,V.intelivo]},
  {nome:'Tecnologia e Conectividade',videos:[V.claro,V.c_holasim,V.validapay,V.meliuz,V.c_iphone,V.c_micro,V.c_fone,V.c_tripe]},
- {nome:'UGC Trip',videos:[V.trip_ig,V.c_trip]}
+ {nome:'UGC Trip',videos:[V.c_trip,V.trip_ig]}
 ];
 const DESTAQUES=[V.neston,V.secinta,V.cerave];
 
@@ -727,7 +727,7 @@ mostra(0);
 document.getElementById('ant').onclick=()=>trilho.scrollBy({left:-trilho.clientWidth*.8,behavior:'smooth'});
 document.getElementById('prox').onclick=()=>trilho.scrollBy({left:trilho.clientWidth*.8,behavior:'smooth'});
 const dv=document.getElementById('destVideos');DESTAQUES.forEach(v=>dv.appendChild(card(v)));
-document.getElementById('apresVideo').appendChild(card(V.apres));document.getElementById('tripVideo').appendChild(card(V.trip_ig));
+document.getElementById('apresVideo').appendChild(card(V.apres));document.getElementById('tripVideo').appendChild(card(V.c_trip));document.getElementById('tripVideo').appendChild(card(V.trip_ig));
 
 const modal=document.getElementById('modal'),mv=document.getElementById('modalVideo');
 const mp=document.getElementById('modalMp4');
