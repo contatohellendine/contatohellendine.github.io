@@ -287,6 +287,7 @@ footer b{font-family:var(--serif);font-weight:500;font-size:20px;color:var(--cre
 .modal.aberto{display:grid}
 .modal video{display:none;width:min(420px,92vw);max-height:86vh;background:#000}
 .modal.mp4 video{display:block}.modal.mp4 iframe{display:none}
+.modal.ig iframe{aspect-ratio:auto;height:86vh;width:min(420px,92vw);background:#fff}
 .modal iframe{width:min(420px,92vw);aspect-ratio:9/16;max-height:86vh;border:0;background:#000}
 .modal .moldura{background:var(--papel);padding:10px 10px 40px}
 .modal button{position:absolute;top:16px;right:16px;width:48px;height:48px;border-radius:50%;border:0;background:var(--creme);cursor:pointer;font-size:24px}
@@ -684,6 +685,7 @@ const V={
  p_clear:{marca:'Clear Man',titulo:'Com Paulo',id:'1BxaYEFHtH7OAa_X6MBh5j2G02gHScesa'},
  p_diamond:{marca:'Diamond',titulo:'Prova social, com Paulo',id:'14CQAp_TDKZ2tdmBVaO9v-zQ_wgJn8jSz'},
  p_gym:{marca:'Vida ativa',titulo:'Esposo fitness',id:'1HT81YoZMm97Jihx-Nknwzl_Nq22g8TMP'},
+ secinta:{marca:'Secinta',titulo:'UGC de moda modeladora',ig:'Da1NsQBsgkA',capa:'capa-secinta.jpg'},
  apres:{marca:'Prazer, Hellen',titulo:'Vídeo de apresentação',id:'1S9T33jJIvkDpOTYJlsPNoY9DesZlE8px'}
 };
 /* Universos: para incluir um vídeo novo, crie uma linha em V acima (marca, titulo e id do Drive) e coloque o nome dele na lista do universo. */
@@ -692,20 +694,20 @@ const NICHOS=[
  {nome:'Autocuidado',videos:[V.boti,V.floratta,V.ecle,V.gino,V.c_salao,V.gym]},
  {nome:'Skincare',videos:[V.cerave,V.dove,V.c_protetor,V.c_kitfacial,V.c_botox,V.nikole]},
  {nome:'Haircare',videos:[V.pant1,V.pant2,V.max1,V.max2,V.andreia,V.c_tonico,V.c_antiqueda]},
- {nome:'Moda e Acessórios',videos:[V.c_vestido,V.c_colar,V.c_academia,V.c_calca]},
+ {nome:'Moda e Acessórios',videos:[V.secinta,V.c_vestido,V.c_colar,V.c_academia,V.c_calca]},
  {nome:'Casa e Organização',videos:[V.allnutri,V.neston,V.azulim,V.lava1,V.lava2]},
  {nome:'Casal',videos:[V.p_diamond,V.p_act,V.p_clear,V.p_gym,V.c_rotina,V.c_pizza]},
  {nome:'Experiências',videos:[V.c_gestante,V.c_clinica,V.c_personal,V.c_instal,V.c_vidro,V.c_pov,V.intelivo]},
  {nome:'Tecnologia e Conectividade',videos:[V.claro,V.c_holasim,V.validapay,V.meliuz,V.c_iphone,V.c_micro,V.c_fone,V.c_tripe]},
  {nome:'UGC Trip',videos:[V.c_trip]}
 ];
-const DESTAQUES=[V.neston,V.pant1,V.cerave];
+const DESTAQUES=[V.neston,V.secinta,V.cerave];
 
 const playIcon='<svg width="14" height="14" viewBox="0 0 24 24" fill="#1E1A18" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>';
 function card(v){
   const b=document.createElement('button');
   b.type='button';b.className='vpola';b.setAttribute('aria-label','Assistir: '+v.marca+', '+v.titulo);
-  const thumb=v.src?'<video src="'+v.src+'#t=0.8" muted playsinline preload="metadata"></video>':'<img alt="" loading="lazy" src="https://drive.google.com/thumbnail?id='+v.id+'&sz=w600">';
+  const thumb=v.capa?'<img alt="" loading="lazy" src="'+v.capa+'">':v.src?'<video src="'+v.src+'#t=0.8" muted playsinline preload="metadata"></video>':'<img alt="" loading="lazy" src="https://drive.google.com/thumbnail?id='+v.id+'&sz=w600">';
   b.innerHTML='<span class="tela">'+thumb+'<span class="play">'+playIcon+'</span></span><span class="leg"><b>'+v.marca+'</b><small>'+v.titulo+'</small></span>';
   const img=b.querySelector('img');if(img)img.onerror=()=>img.remove();
   b.addEventListener('click',()=>abrir(v));
@@ -727,7 +729,7 @@ document.getElementById('apresVideo').appendChild(card(V.apres));document.getEle
 
 const modal=document.getElementById('modal'),mv=document.getElementById('modalVideo');
 const mp=document.getElementById('modalMp4');
-function abrir(v){if(v.src){modal.classList.add('mp4');mp.src=v.src;mp.play().catch(()=>{});}else{modal.classList.remove('mp4');mv.src='https://drive.google.com/file/d/'+v.id+'/preview';}modal.classList.add('aberto');document.getElementById('fechar').focus();}
+function abrir(v){modal.classList.toggle('ig',!!v.ig);if(v.ig){modal.classList.remove('mp4');mv.src='https://www.instagram.com/p/'+v.ig+'/embed/';}else if(v.src){modal.classList.add('mp4');mp.src=v.src;mp.play().catch(()=>{});}else{modal.classList.remove('mp4');mv.src='https://drive.google.com/file/d/'+v.id+'/preview';}modal.classList.add('aberto');document.getElementById('fechar').focus();}
 function fechar(){mv.src='about:blank';mp.pause();mp.removeAttribute('src');modal.classList.remove('aberto');}
 document.getElementById('fechar').onclick=fechar;
 modal.addEventListener('click',e=>{if(e.target===modal)fechar();});
