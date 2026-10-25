@@ -94,7 +94,7 @@ h2{font-size:clamp(40px,5.4vw,68px)}
 
 /* cap 01 */
 .quem{display:grid;grid-template-columns:.85fr 1.15fr;gap:72px;align-items:center;margin-top:48px}
-.quem .pola{transform:rotate(-3deg);max-width:420px}
+.quem .pola{rotate:-3deg;max-width:420px}
 .quem .pola.mini{position:absolute;width:46%;right:-8%;bottom:-12%;transform:rotate(6deg)}
 .quem-fotos{position:relative;padding-bottom:12%}
 .check{list-style:none;padding:0;margin:28px 0 0;display:grid;gap:10px}
@@ -166,6 +166,33 @@ h2{font-size:clamp(40px,5.4vw,68px)}
 .trip .coord{font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--suave)}
 @media(max-width:880px){.trip{grid-template-columns:1fr;padding:28px}}
 
+
+/* fotos ugc */
+.fotos{display:grid;grid-template-columns:repeat(3,1fr);gap:30px 26px;margin-top:44px}
+.fotos figure{margin:0}
+.fotos figure:nth-child(3n+2){margin-top:30px}
+@media(max-width:880px){.fotos{grid-template-columns:1fr 1fr;gap:20px 16px}.fotos figure:nth-child(3n+2){margin-top:0}.fotos figure:nth-child(even){margin-top:24px}}
+.fotos figure:nth-child(3n+1){rotate:-1.6deg}
+.fotos figure:nth-child(3n+2){rotate:1.2deg}
+.fotos .pola img{aspect-ratio:4/5}
+/* diário de viagem */
+.viagem{background:var(--areia)}
+.viagem .meta{border-color:rgba(30,26,24,.18);color:#4A433F}
+.mapa{display:grid;grid-template-columns:repeat(4,1fr);gap:30px 26px;margin-top:52px;align-items:start}
+.mapa figure{margin:0}
+.mapa figure:nth-child(odd){rotate:-2.2deg}
+.mapa figure:nth-child(even){rotate:2deg;margin-top:34px}
+.mapa .pola img{aspect-ratio:4/5}
+.mapa .pola figcaption{bottom:8px;line-height:1.1}
+.mapa .pola figcaption small{display:block;font:500 10px var(--sans);letter-spacing:2px;text-transform:uppercase;font-style:normal;color:var(--cinza);margin-top:3px}
+.roteiro{display:grid;grid-template-columns:1.2fr .8fr;gap:40px;align-items:start;margin-top:60px;padding-top:36px;border-top:1px solid rgba(30,26,24,.18)}
+.roteiro p{color:#4A433F;font-size:17px;margin:12px 0 0}
+.roteiro ul{margin:0;padding:0;list-style:none;display:grid;gap:8px;font-size:15px}
+.roteiro li::before{content:"✦ ";color:#8E4F47}
+.destinos{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.destinos span{padding:6px 14px;border-radius:999px;border:1px solid rgba(30,26,24,.25);font-size:13px;font-weight:500}
+@media(max-width:880px){.mapa{grid-template-columns:1fr 1fr;gap:22px 16px}.roteiro{grid-template-columns:1fr}}
+
 /* cap 04 */
 .marcas{background:var(--preto);color:var(--creme)}
 .marcas .meta{color:#B5ACA4;border-color:rgba(243,234,223,.18)}
@@ -213,7 +240,7 @@ h2{font-size:clamp(40px,5.4vw,68px)}
 .contato .meta{color:#B5ACA4;border-color:rgba(243,234,223,.18)}
 .contato .cap,.contato .it{color:#E2B5AD}
 .contato-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:64px;align-items:center;margin-top:44px}
-.contato .pola{transform:rotate(-4deg);max-width:380px}
+.contato .pola{rotate:-4deg;max-width:380px}
 .contato p{color:#D8CFC6;font-size:17px}
 .links{display:grid;gap:10px;margin-top:30px}
 .links a{display:flex;align-items:center;gap:14px;min-height:58px;padding:0 20px;border-radius:16px;border:1px solid rgba(243,234,223,.18);text-decoration:none;font-weight:500;transition:all .2s;overflow-wrap:anywhere}
@@ -249,6 +276,7 @@ footer b{font-family:var(--serif);font-weight:500;font-size:20px;color:var(--cre
       <a href="#quem">Quem sou</a>
       <a href="#crio">O que crio</a>
       <a href="#universos">Trabalhos</a>
+      <a href="#viagem">Viagens</a>
       <a href="#numeros">Números</a>
       <a href="#contato" class="btn">Vamos conversar</a>
     </nav>
@@ -274,7 +302,7 @@ footer b{font-family:var(--serif);font-weight:500;font-size:20px;color:var(--cre
           </div>
         </div>
         <div class="polas" aria-hidden="false">
-          <figure class="pola p1" style="margin:0"><img src="foto-sobre-2.jpg" alt="Hellen com o filho em viagem"><figcaption>viagens</figcaption></figure>
+          <figure class="pola p1" style="margin:0"><img src="viagem-jeri.jpg" alt="Hellen em uma rua de Jericoacoara"><figcaption>viagens</figcaption></figure>
           <figure class="pola p2" style="margin:0"><img src="foto-hero.jpg" alt="Hellen Dine sorrindo, de vestido rosa" fetchpriority="high"><figcaption>eu</figcaption></figure>
           <figure class="pola p3" style="margin:0"><img src="foto-processo.jpg" alt="Hellen trabalhando no notebook"><figcaption>rotina</figcaption></figure>
         </div>
@@ -362,16 +390,55 @@ footer b{font-family:var(--serif);font-weight:500;font-size:20px;color:var(--cre
       </div>
     </div>
     <div class="trilho" id="trilho" role="tabpanel"></div>
-    <p class="outros">Também crio para <b>Moda e Acessórios</b>, <b>Casal</b> e <b>UGC Trip</b>.</p>
+    <p class="outros">Também crio para <b>Moda e Acessórios</b>, <b>Casal</b> e <a href="#viagem" style="color:var(--preto);font-weight:600">UGC Trip ↓</a>.</p>
 
-    <div class="trip rv" id="trip">
+  </div>
+</section>
+
+
+<!-- FOTOS UGC -->
+<section class="sec" id="fotos" style="padding-top:0">
+  <div class="wrap">
+    <div class="meta rv"><span>Cap. 03 · Parte II</span><span>Fotos UGC</span></div>
+    <h2 class="rv" style="margin-top:40px">Produto na <span class="it">vida real</span></h2>
+    <p class="lead rv" style="margin-top:16px">Fotos lifestyle prontas para site, marketplace, anúncio e redes da sua marca.</p>
+    <div class="fotos">
+      <figure class="pola rv"><img src="ugc-aneis.jpg" alt="Foto UGC: Joias" loading="lazy"><figcaption>Joias</figcaption></figure>
+      <figure class="pola rv"><img src="ugc-argila.jpg" alt="Foto UGC: Argila rosa" loading="lazy"><figcaption>Argila rosa</figcaption></figure>
+      <figure class="pola rv"><img src="ugc-pantene.jpg" alt="Foto UGC: Pantene" loading="lazy"><figcaption>Pantene</figcaption></figure>
+      <figure class="pola rv"><img src="ugc-esfoliante.jpg" alt="Foto UGC: Esfoliante corporal" loading="lazy"><figcaption>Esfoliante corporal</figcaption></figure>
+      <figure class="pola rv"><img src="ugc-dove.jpg" alt="Foto UGC: Dove" loading="lazy"><figcaption>Dove</figcaption></figure>
+      <figure class="pola rv"><img src="ugc-oculos.jpg" alt="Foto UGC: Ótica" loading="lazy"><figcaption>Ótica</figcaption></figure>
+      <figure class="pola rv"><img src="ugc-micelar.jpg" alt="Foto UGC: Água micelar" loading="lazy"><figcaption>Água micelar</figcaption></figure>
+      <figure class="pola rv"><img src="ugc-impala.jpg" alt="Foto UGC: Impala" loading="lazy"><figcaption>Impala</figcaption></figure>
+      <figure class="pola rv"><img src="ugc-principia.jpg" alt="Foto UGC: Principia" loading="lazy"><figcaption>Principia</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- DIÁRIO DE VIAGEM -->
+<section class="sec viagem" id="viagem">
+  <div class="wrap">
+    <div class="meta rv"><span>Cap. 04</span><span>Diário de viagem · UGC Trip</span></div>
+    <h2 class="rv" style="margin-top:40px">Do coração da Amazônia <span class="it" style="color:#8E4F47">para qualquer destino</span></h2>
+    <div class="mapa">
+      <figure class="pola rv"><img src="viagem-jeri.jpg" alt="Jericoacoara" loading="lazy"><figcaption>Jericoacoara<small>2°47′S · CE</small></figcaption></figure>
+      <figure class="pola rv"><img src="viagem-fortaleza.jpg" alt="Fortaleza" loading="lazy"><figcaption>Fortaleza<small>3°43′S · CE</small></figcaption></figure>
+      <figure class="pola rv"><img src="foto-sobre-2.jpg" alt="Roma" loading="lazy"><figcaption>Roma<small>41°54′N · Itália</small></figcaption></figure>
+      <figure class="pola rv"><img src="viagem-provins.jpg" alt="Provins" loading="lazy"><figcaption>Provins<small>48°33′N · França</small></figcaption></figure>
+      <figure class="pola rv"><img src="viagem-jeri-rede.jpg" alt="Jeri, pousada" loading="lazy"><figcaption>Jeri, pousada<small>2°47′S · CE</small></figcaption></figure>
+      <figure class="pola rv"><img src="viagem-lille.jpg" alt="Lille" loading="lazy"><figcaption>Lille<small>50°38′N · França</small></figcaption></figure>
+      <figure class="pola rv"><img src="viagem-praia.jpg" alt="Litoral do Ceará" loading="lazy"><figcaption>Litoral do Ceará<small>Brasil</small></figcaption></figure>
+      <figure class="pola rv"><img src="foto-sobre-1.jpg" alt="Manaus" loading="lazy"><figcaption>Manaus<small>3°06′S · AM</small></figcaption></figure>
+    </div>
+    <div class="roteiro rv">
       <div>
-        <div class="coord">De Manaus para qualquer destino</div>
-        <h3 style="margin-top:8px">UGC <span class="it">Trip</span></h3>
-        <p>Do coração da Amazônia para qualquer destino. Transformo viagens e experiências em conteúdos autênticos que despertam desejo e aproximam a sua marca do público certo.</p>
+        <p style="margin:0;font-family:var(--serif);font-size:28px;color:var(--preto);line-height:1.2">Cada destino tem uma história. <em style="color:#8E4F47">Meu trabalho é transformá-la em conteúdo.</em></p>
+        <p>Viajo com a família e registro a experiência como ela é: o quarto, o café da manhã, o passeio, o detalhe que faz alguém querer reservar.</p>
+        <div class="destinos"><span>França</span><span>Bélgica</span><span>Alemanha</span><span>Luxemburgo</span><span>Itália</span><span>Espanha</span><span>Ceará</span><span>Amazonas</span></div>
       </div>
       <ul>
-        <li>Hotéis, pousadas e resorts</li><li>Restaurantes e cafés</li><li>Agências e destinos turísticos</li><li>Vídeos, fotos e cobertura da experiência</li>
+        <li>Hotéis, pousadas e resorts</li><li>Restaurantes e cafés</li><li>Agências e destinos turísticos</li><li>Experiências e passeios</li><li>Vídeos, fotos lifestyle e stories</li><li>Cobertura completa da viagem</li>
       </ul>
     </div>
   </div>
@@ -380,7 +447,7 @@ footer b{font-family:var(--serif);font-weight:500;font-size:20px;color:var(--cre
 <!-- CAP 04 -->
 <section class="sec marcas" id="marcas">
   <div class="wrap">
-    <div class="meta rv"><span>Cap. 04</span><span>Marcas que confiaram</span></div>
+    <div class="meta rv"><span>Cap. 05</span><span>Marcas que confiaram</span></div>
     <h2 class="rv" style="margin-top:40px">Quem já entrou <span class="it">no meu diário</span></h2>
     <div class="lista-marcas rv">
       <span>Natura</span><span>O Boticário</span><span>Dove</span><span>Pantene</span><span>Canesten Bayer</span><span>Bepantol Baby</span><span>Claro</span><span>Ola Sim</span><span>Niely</span><span>Sace Lady</span><span>Creamy</span><span>Giovanna Baby</span><span>AME Kids</span>
@@ -392,7 +459,7 @@ footer b{font-family:var(--serif);font-weight:500;font-size:20px;color:var(--cre
 <!-- CAP 05 -->
 <section class="sec" id="porque">
   <div class="wrap">
-    <div class="meta rv"><span>Cap. 05</span><span>Por que eu</span></div>
+    <div class="meta rv"><span>Cap. 06</span><span>Por que eu</span></div>
     <h2 class="rv" style="margin-top:40px">Uma creator que <span class="it">entende de contrato</span></h2>
     <div class="porque">
       <div class="rv"><span class="n">i.</span><h3>Briefing e contrato</h3><p>Leitura atenta de prazos, entregas, exclusividade e uso de imagem antes de gravar. Sua campanha sai criativa e segura.</p></div>
@@ -405,7 +472,7 @@ footer b{font-family:var(--serif);font-weight:500;font-size:20px;color:var(--cre
 <!-- CAP 06 -->
 <section class="sec numeros" id="numeros">
   <div class="wrap">
-    <div class="meta rv" style="border-color:rgba(30,26,24,.18);color:#4A433F"><span>Cap. 06</span><span>Números</span></div>
+    <div class="meta rv" style="border-color:rgba(30,26,24,.18);color:#4A433F"><span>Cap. 07</span><span>Números</span></div>
     <h2 class="rv" style="margin-top:40px">O que os números <span class="it" style="color:#8E4F47">contam</span></h2>
     <div class="rede rv"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/></svg>Instagram @hellen_dinne</div>
     <div class="grid-n rv">
@@ -449,7 +516,7 @@ footer b{font-family:var(--serif);font-weight:500;font-size:20px;color:var(--cre
 <!-- CAP 07 -->
 <section class="sec contato" id="contato">
   <div class="wrap">
-    <div class="meta rv"><span>Cap. 07</span><span>Vamos conversar</span></div>
+    <div class="meta rv"><span>Cap. 08</span><span>Vamos conversar</span></div>
     <div class="contato-grid">
       <figure class="pola rv" style="margin:0"><img src="foto-contato.jpg" alt="Hellen Dine" loading="lazy"><figcaption>até breve</figcaption></figure>
       <div class="rv">
