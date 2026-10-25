@@ -133,10 +133,10 @@ h2{font-size:clamp(40px,5.4vw,68px)}
 /* cards de vídeo polaroide */
 .vpola{flex:none;width:210px;background:var(--papel);padding:9px 9px 0;box-shadow:0 18px 36px -22px rgba(30,26,24,.6);border:0;font:inherit;color:inherit;text-align:left;cursor:pointer;transition:transform .3s}
 .vpola:hover{transform:translateY(-4px) rotate(0)!important}
-.vpola .tela{position:relative;aspect-ratio:9/16;overflow:hidden;background:linear-gradient(160deg,var(--rosa),var(--preto))}
-.vpola .tela img{width:100%;height:100%;object-fit:cover}
+.vpola .tela{display:block;position:relative;aspect-ratio:9/16;overflow:hidden;background:linear-gradient(160deg,var(--rosa),var(--preto))}
+.vpola .tela img,.vpola .tela video{width:100%;height:100%;object-fit:cover;display:block}
 .vpola .play{position:absolute;right:10px;bottom:10px;width:38px;height:38px;border-radius:50%;background:rgba(251,247,242,.94);display:grid;place-items:center}
-.vpola .leg{padding:10px 4px 12px}
+.vpola .leg{display:block;padding:10px 4px 12px}
 .vpola .leg b{display:block;font-family:var(--serif);font-weight:600;font-size:20px;line-height:1.1}
 .vpola .leg small{font-size:12px;color:var(--suave)}
 
@@ -192,6 +192,35 @@ h2{font-size:clamp(40px,5.4vw,68px)}
 .destinos{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
 .destinos span{padding:6px 14px;border-radius:999px;border:1px solid rgba(30,26,24,.25);font-size:13px;font-weight:500}
 @media(max-width:880px){.mapa{grid-template-columns:1fr 1fr;gap:22px 16px}.roteiro{grid-template-columns:1fr}}
+
+
+/* apresentação */
+.apres{position:absolute;right:-10%;bottom:-2%;rotate:5deg;z-index:2}
+.apres .vpola{width:180px}
+@media(max-width:880px){.apres{right:0;bottom:-8%}.apres .vpola{width:140px}}
+/* resultados */
+.resultados{background:var(--creme)}
+.res-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:48px}
+.res-card{background:var(--papel);border:1px solid var(--linha);border-radius:24px;padding:30px}
+.res-card .big{font-family:var(--serif);font-size:clamp(44px,5vw,64px);line-height:1;color:var(--preto)}
+.res-card .big em{color:#8E4F47;font-size:.55em}
+.res-card p{color:var(--suave);font-size:15px;margin:10px 0 18px}
+.res-card img{width:100%;border-radius:10px;border:1px solid var(--linha)}
+.fb-grid{display:grid;grid-template-columns:.8fr .8fr 1.2fr;gap:30px;margin-top:56px;align-items:center}
+.fb-grid .pola{margin:0}
+.fb-grid .pola img{aspect-ratio:auto;height:auto}
+.fb-grid .pola:nth-child(1){rotate:-2.5deg}.fb-grid .pola:nth-child(2){rotate:2deg}
+.citacao{font-family:var(--serif);font-size:clamp(24px,2.4vw,30px);line-height:1.25}
+.citacao em{color:#8E4F47}
+.citacao small{display:block;margin-top:14px;font:600 13px var(--sans);letter-spacing:2px;text-transform:uppercase;color:var(--suave)}
+@media(max-width:880px){.res-grid,.fb-grid{grid-template-columns:1fr}.fb-grid .pola{max-width:82%;margin:0 auto}}
+/* investimento */
+.invest{background:var(--areia)}
+.invest-box{display:grid;grid-template-columns:1.2fr .8fr;gap:40px;align-items:center;margin-top:40px}
+.invest p{color:#4A433F;font-size:17px}
+.invest .chips span{border:1px solid rgba(30,26,24,.25)}
+.btn.wa{min-height:60px;padding:0 30px;font-size:16px}
+@media(max-width:880px){.invest-box{grid-template-columns:1fr}}
 
 /* cap 04 */
 .marcas{background:var(--preto);color:var(--creme)}
@@ -256,6 +285,8 @@ footer b{font-family:var(--serif);font-weight:500;font-size:20px;color:var(--cre
 /* modal */
 .modal{position:fixed;inset:0;z-index:80;background:rgba(20,16,14,.88);display:none;place-items:center;padding:20px}
 .modal.aberto{display:grid}
+.modal video{display:none;width:min(420px,92vw);max-height:86vh;background:#000}
+.modal.mp4 video{display:block}.modal.mp4 iframe{display:none}
 .modal iframe{width:min(420px,92vw);aspect-ratio:9/16;max-height:86vh;border:0;background:#000}
 .modal .moldura{background:var(--papel);padding:10px 10px 40px}
 .modal button{position:absolute;top:16px;right:16px;width:48px;height:48px;border-radius:50%;border:0;background:var(--creme);cursor:pointer;font-size:24px}
@@ -277,7 +308,7 @@ footer b{font-family:var(--serif);font-weight:500;font-size:20px;color:var(--cre
       <a href="#crio">O que crio</a>
       <a href="#universos">Trabalhos</a>
       <a href="#viagem">Viagens</a>
-      <a href="#numeros">Números</a>
+      <a href="#resultados">Resultados</a>
       <a href="#contato" class="btn">Vamos conversar</a>
     </nav>
   </div>
@@ -322,10 +353,11 @@ footer b{font-family:var(--serif);font-weight:500;font-size:20px;color:var(--cre
     <div class="quem">
       <div class="quem-fotos rv">
         <figure class="pola" style="margin:0"><img src="foto-sobre-1.jpg" alt="Retrato de Hellen Dine" loading="lazy"><figcaption>prazer, Hellen</figcaption></figure>
+        <div class="apres" id="apresVideo"></div>
       </div>
       <div class="rv">
         <h2>Mãe, advogada e <span class="it">criadora de conteúdo</span></h2>
-        <p class="lead" style="margin-top:22px">Foi com a maternidade que descobri uma nova forma de me comunicar, transformando experiências reais em conteúdos que conectam e aproximam marcas de mães e famílias.</p>
+        <p class="lead" style="margin-top:22px">Dá o play no meu vídeo de apresentação. Foi com a maternidade que descobri uma nova forma de me comunicar, transformando experiências reais em conteúdos que conectam e aproximam marcas de mães e famílias.</p>
         <ul class="check">
           <li><span>i.</span>Maternidade como principal nicho de atuação</li>
           <li><span>ii.</span>Comunicação leve, segura e espontânea</li>
@@ -390,7 +422,7 @@ footer b{font-family:var(--serif);font-weight:500;font-size:20px;color:var(--cre
       </div>
     </div>
     <div class="trilho" id="trilho" role="tabpanel"></div>
-    <p class="outros">Também crio para <b>Moda e Acessórios</b>, <b>Casal</b> e <a href="#viagem" style="color:var(--preto);font-weight:600">UGC Trip ↓</a>.</p>
+    <p class="outros">Quer ver as viagens? <a href="#viagem" style="color:var(--preto);font-weight:600">Abra o diário de viagem ↓</a></p>
 
   </div>
 </section>
@@ -437,9 +469,12 @@ footer b{font-family:var(--serif);font-weight:500;font-size:20px;color:var(--cre
         <p>Viajo com a família e registro a experiência como ela é: o quarto, o café da manhã, o passeio, o detalhe que faz alguém querer reservar.</p>
         <div class="destinos"><span>França</span><span>Bélgica</span><span>Alemanha</span><span>Luxemburgo</span><span>Itália</span><span>Espanha</span><span>Ceará</span><span>Amazonas</span></div>
       </div>
+      <div style="display:flex;gap:26px;align-items:flex-start;flex-wrap:wrap">
+      <div id="tripVideo" style="rotate:-2deg"></div>
       <ul>
         <li>Hotéis, pousadas e resorts</li><li>Restaurantes e cafés</li><li>Agências e destinos turísticos</li><li>Experiências e passeios</li><li>Vídeos, fotos lifestyle e stories</li><li>Cobertura completa da viagem</li>
       </ul>
+      </div>
     </div>
   </div>
 </section>
@@ -453,6 +488,32 @@ footer b{font-family:var(--serif);font-weight:500;font-size:20px;color:var(--cre
       <span>Natura</span><span>O Boticário</span><span>Dove</span><span>Pantene</span><span>Canesten Bayer</span><span>Bepantol Baby</span><span>Claro</span><span>Ola Sim</span><span>Niely</span><span>Sace Lady</span><span>Creamy</span><span>Giovanna Baby</span><span>AME Kids</span>
     </div>
     <p class="mais rv">E mais de 80 marcas ao longo da minha trajetória.</p>
+  </div>
+</section>
+
+
+<!-- RESULTADOS E FEEDBACKS -->
+<section class="sec resultados" id="resultados">
+  <div class="wrap">
+    <div class="meta rv"><span>Cap. 05 · Parte II</span><span>Resultados e feedbacks</span></div>
+    <h2 class="rv" style="margin-top:40px">Conteúdo que <span class="it">vira venda</span></h2>
+    <div class="res-grid">
+      <div class="res-card rv">
+        <div class="big">R$ 1.311,02 <em>em 1 mês</em></div>
+        <p>Vendas com o meu cupom HELLEN10 em julho de 2026: 10 pedidos, ticket médio de R$ 131,10.</p>
+        <img src="venda-hellen10.jpg" alt="Print do painel de vendas com o cupom HELLEN10" loading="lazy">
+      </div>
+      <div class="res-card rv">
+        <div class="big">R$ 961,73 <em>em receita</em></div>
+        <p>Receita líquida com o meu cupom HELLEN15 entre março e julho de 2026.</p>
+        <img src="venda-hellen15.jpg" alt="Print do relatório de receita do cupom HELLEN15" loading="lazy">
+      </div>
+    </div>
+    <div class="fb-grid">
+      <figure class="pola rv"><img src="feedback-donna.jpg" alt="Mensagem da marca Donna sobre vendas com o cupom" loading="lazy"><figcaption>Donna</figcaption></figure>
+      <figure class="pola rv"><img src="feedback-otica.jpg" alt="Depoimento da Ótica Portilho" loading="lazy"><figcaption>Ótica Portilho</figcaption></figure>
+      <blockquote class="citacao rv" style="margin:0">“Após nossa parceria fui beneficiada com <em>novos seguidores, crescimento dos espectadores nos stories</em> e facilidade na prospecção de vendas pela confiabilidade demonstrada.”<small>Jessyca, Ótica Portilho</small></blockquote>
+    </div>
   </div>
 </section>
 
@@ -513,6 +574,24 @@ footer b{font-family:var(--serif);font-weight:500;font-size:20px;color:var(--cre
   </div>
 </section>
 
+
+<!-- INVESTIMENTO -->
+<section class="sec invest" id="investimento">
+  <div class="wrap">
+    <div class="meta rv" style="border-color:rgba(30,26,24,.18);color:#4A433F"><span>Investimento</span><span>Proposta sob medida</span></div>
+    <div class="invest-box">
+      <div class="rv">
+        <h2>Vamos montar o <span class="it" style="color:#8E4F47">seu pacote?</span></h2>
+        <p style="margin-top:18px">Cada marca tem um objetivo, então a proposta é feita para a sua campanha. Me chama no WhatsApp e eu envio os valores.</p>
+        <div class="chips"><span>Vídeos UGC</span><span>Fotos UGC</span><span>Reels e stories</span><span>Pacotes mensais</span><span>Whitelisting</span><span>Exclusividade</span></div>
+      </div>
+      <div class="rv">
+        <a class="btn wa" href="https://wa.me/5592991389516?text=Ol%C3%A1%2C%20Hellen%21%20Vim%20pelo%20seu%20portf%C3%B3lio%20e%20quero%20consultar%20valores%20para%20a%20minha%20marca." target="_blank" rel="noopener"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 20l1.3-4A8 8 0 1 1 8 18.7z"/></svg>Consultar valores no WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- CAP 07 -->
 <section class="sec contato" id="contato">
   <div class="wrap">
@@ -523,7 +602,7 @@ footer b{font-family:var(--serif);font-weight:500;font-size:20px;color:var(--cre
         <h2>O próximo capítulo <span class="it">pode ser o seu</span></h2>
         <p style="margin-top:18px">Me conta sobre a sua marca e a campanha que você imagina. Respondo rapidinho e monto uma proposta sob medida.</p>
         <div class="links">
-          <a href="https://wa.me/5592991389516" target="_blank" rel="noopener"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E2B5AD" stroke-width="1.8" aria-hidden="true"><path d="M4 20l1.3-4A8 8 0 1 1 8 18.7z"/></svg>WhatsApp (92) 99138-9516<span>↗</span></a>
+          <a href="https://wa.me/5592991389516?text=Ol%C3%A1%2C%20Hellen%21%20Vim%20pelo%20seu%20portf%C3%B3lio%20e%20quero%20consultar%20valores%20para%20a%20minha%20marca." target="_blank" rel="noopener"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E2B5AD" stroke-width="1.8" aria-hidden="true"><path d="M4 20l1.3-4A8 8 0 1 1 8 18.7z"/></svg>WhatsApp (92) 99138-9516<span>↗</span></a>
           <a href="mailto:contatohellendine@gmail.com"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E2B5AD" stroke-width="1.8" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>contatohellendine@gmail.com<span>↗</span></a>
           <a href="https://instagram.com/hellen_dinne" target="_blank" rel="noopener"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E2B5AD" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/></svg>Instagram @hellen_dinne<span>↗</span></a>
           <a href="https://tiktok.com/@hellen_dinne" target="_blank" rel="noopener"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E2B5AD" stroke-width="1.8" aria-hidden="true"><path d="M14 3v11.5a3.5 3.5 0 1 1-3.5-3.5"/><path d="M14 3c.5 2.8 2.4 4.6 5 5"/></svg>TikTok @hellen_dinne<span>↗</span></a>
@@ -540,7 +619,7 @@ footer b{font-family:var(--serif);font-weight:500;font-size:20px;color:var(--cre
 
 <div class="modal" id="modal" role="dialog" aria-modal="true" aria-label="Vídeo">
   <button type="button" id="fechar" aria-label="Fechar vídeo">×</button>
-  <div class="moldura"><iframe id="modalVideo" title="Vídeo" allow="autoplay; fullscreen" allowfullscreen></iframe></div>
+  <div class="moldura"><iframe id="modalVideo" title="Vídeo" allow="autoplay; fullscreen" allowfullscreen></iframe><video id="modalMp4" controls playsinline></video></div>
 </div>
 
 <script>
@@ -570,27 +649,66 @@ const V={
  claro:{marca:'Claro',titulo:'Conectividade',id:'18GYh2uAPMyUP6YDn-10PdytXo3XE6q9o'},
  validapay:{marca:'ValidaPay',titulo:'App',id:'1B-LDR_2UJ-JWb0KfO_JHHjNe9FgZOywB'},
  meliuz:{marca:'Méliuz',titulo:'App de cashback',id:'1BDn117U6vVbr-wdeGMeLtahRuewNvKBX'},
+ c_hidrat:{marca:'Hidratante infantil',titulo:'Depoimento',src:'https://portifoliohellendine.my.canva.site/portf-lio-oficial/_assets/video/01057b8c07e04957d0c577760021f270.mp4'},
+ c_receita:{marca:'Receita',titulo:'Produtos alimentícios',src:'https://portifoliohellendine.my.canva.site/portf-lio-oficial/_assets/video/526b7b046059ae9195e01659db89ec7e.mp4'},
+ c_carrinho:{marca:'Carrinho de bebê',titulo:'Depoimento',src:'https://portifoliohellendine.my.canva.site/portf-lio-oficial/_assets/video/4316427ca959d0555380693ef9ca3ce5.mp4'},
+ c_sabonete:{marca:'Sabonete multifuncional',titulo:'Demonstrativo',src:'https://portifoliohellendine.my.canva.site/portf-lio-oficial/_assets/video/a7a11fcdc44edf1072adbed4ab9a86ad.mp4'},
+ c_oculosk:{marca:'Óculos infantil',titulo:'Vídeo de oferta',src:'https://portifoliohellendine.my.canva.site/portf-lio-oficial/_assets/video/5013e29a15bd01669deeb81635299390.mp4'},
+ c_salao:{marca:'Salão de beleza',titulo:'Depoimento',src:'https://portifoliohellendine.my.canva.site/portf-lio-oficial/_assets/video/55fe78afe44d4c220c701b8eeb542c33.mp4'},
+ c_protetor:{marca:'Protetor com cor',titulo:'Demonstrativo',src:'https://portifoliohellendine.my.canva.site/portf-lio-oficial/_assets/video/ae5636bc3b03e55c38ac6f4ef69656d9.mp4'},
+ c_botox:{marca:'Botox',titulo:'Depoimento',src:'https://portifoliohellendine.my.canva.site/portf-lio-oficial/_assets/video/85b26e9272f9812f66c52de5e1234e95.mp4'},
+ c_kitfacial:{marca:'Kit facial',titulo:'Vlog',src:'https://portifoliohellendine.my.canva.site/portf-lio-oficial/_assets/video/47dd416e1cc4741576a408d35732a80d.mp4'},
+ c_tonico:{marca:'Tônico capilar',titulo:'Unboxing',src:'https://portifoliohellendine.my.canva.site/portf-lio-oficial/_assets/video/5c671da5975e9ac8fdb26c63694721a6.mp4'},
+ c_antiqueda:{marca:'Kit antiqueda',titulo:'Vídeo de oferta',src:'https://portifoliohellendine.my.canva.site/portf-lio-oficial/_assets/video/26c4aa41d8641340806448a818cc6198.mp4'},
+ c_vestido:{marca:'Vestido',titulo:'Provador',src:'https://portifoliohellendine.my.canva.site/portf-lio-oficial/_assets/video/5d1f1399b9374f8e75bb8d74ff6184f8.mp4'},
+ c_colar:{marca:'Colar',titulo:'Estético',src:'https://portifoliohellendine.my.canva.site/portf-lio-oficial/_assets/video/76bb5a9dc0c83710b7e25870f3c35390.mp4'},
+ c_academia:{marca:'Look de academia',titulo:'Narrado',src:'https://portifoliohellendine.my.canva.site/portf-lio-oficial/_assets/video/414044ee5c12c7000bbd4cf8328c6848.mp4'},
+ c_calca:{marca:'Calça',titulo:'Demonstrativo',src:'https://portifoliohellendine.my.canva.site/portf-lio-oficial/_assets/video/a55a7edfdda312f388d7d9a65537aad6.mp4'},
+ c_rotina:{marca:'Casal',titulo:'Introduzindo na rotina',src:'https://portifoliohellendine.my.canva.site/portf-lio-oficial/_assets/video/be2354cadcb687315a511d62db5e5f2d.mp4'},
+ c_pizza:{marca:'Casa da Pizza',titulo:'Casal',src:'https://portifoliohellendine.my.canva.site/portf-lio-oficial/_assets/video/6bd08d6c136e496465e46220ffcab589.mp4'},
+ c_instal:{marca:'Serviço de instalação',titulo:'Depoimento',src:'https://portifoliohellendine.my.canva.site/portf-lio-oficial/_assets/video/ba1c79e2d825fabf16e17cab3ac56b12.mp4'},
+ c_clinica:{marca:'Clínica de estética',titulo:'Sazonal',src:'https://portifoliohellendine.my.canva.site/portf-lio-oficial/_assets/video/bd7bbe9f8927a657cfa018b51cb31dfc.mp4'},
+ c_gestante:{marca:'Ensaio gestante',titulo:'Depoimento',src:'https://portifoliohellendine.my.canva.site/portf-lio-oficial/_assets/video/f9b46d8cf85f314da15c60175652e9b2.mp4'},
+ c_vidro:{marca:'Vidraçaria',titulo:'Vídeo de oferta',src:'https://portifoliohellendine.my.canva.site/portf-lio-oficial/_assets/video/e7b37f590672b3f3c172ef8bddc9eec2.mp4'},
+ c_personal:{marca:'Personal trainer',titulo:'Depoimento',src:'https://portifoliohellendine.my.canva.site/portf-lio-oficial/_assets/video/a6f93a493cc0c27ca8e80b78630b6af3.mp4'},
+ c_salaokid:{marca:'Salão infantil',titulo:'Vlog',src:'https://portifoliohellendine.my.canva.site/portf-lio-oficial/_assets/video/01eb4f499f5f322775c013645031fb69.mp4'},
+ c_pov:{marca:'Videomaker',titulo:'POV',src:'https://portifoliohellendine.my.canva.site/portf-lio-oficial/_assets/video/87d53926449417ea9a06e7e5a7c72afa.mp4'},
+ c_micro:{marca:'Microfone',titulo:'Unboxing',src:'https://portifoliohellendine.my.canva.site/portf-lio-oficial/_assets/video/6407ca7de42d1b70bca6f00433e9fca7.mp4'},
+ c_fone:{marca:'Fone de ouvido',titulo:'Demonstrativo',src:'https://portifoliohellendine.my.canva.site/portf-lio-oficial/_assets/video/f15b317431cea2e54d6586c0b06c198c.mp4'},
+ c_iphone:{marca:'iPhone',titulo:'Unboxing',src:'https://portifoliohellendine.my.canva.site/portf-lio-oficial/_assets/video/bd9bb052b1395dc00376aa62817c7871.mp4'},
+ c_holasim:{marca:'Ola Sim',titulo:'Conectividade',src:'https://portifoliohellendine.my.canva.site/portf-lio-oficial/_assets/video/5ac5085d33fff8240deaf0182e84a03c.mp4'},
+ c_tripe:{marca:'Tripé',titulo:'Depoimento',src:'https://portifoliohellendine.my.canva.site/portf-lio-oficial/_assets/video/4586df87beb603400f17db7bba40d8a2.mp4'},
+ c_trip:{marca:'UGC Trip',titulo:'Experiência de viagem',src:'https://portifoliohellendine.my.canva.site/portf-lio-oficial/_assets/video/7e9f87f02ad0b02f749f5ad743e688a7.mp4'},
+ c_case:{marca:'Case de oferta',titulo:'Testemunhal',src:'https://portifoliohellendine.my.canva.site/portf-lio-oficial/_assets/video/c8ae4af6327d6cf23e614a91b5296be6.mp4'},
+ p_act:{marca:'ActGold',titulo:'Com Paulo',id:'1PXaaRDnJNVFnNiYdLLrq9uW5-a_eykFU'},
+ p_clear:{marca:'Clear Man',titulo:'Com Paulo',id:'1BxaYEFHtH7OAa_X6MBh5j2G02gHScesa'},
+ p_diamond:{marca:'Diamond',titulo:'Prova social, com Paulo',id:'14CQAp_TDKZ2tdmBVaO9v-zQ_wgJn8jSz'},
+ p_gym:{marca:'Vida ativa',titulo:'Esposo fitness',id:'1HT81YoZMm97Jihx-Nknwzl_Nq22g8TMP'},
  apres:{marca:'Prazer, Hellen',titulo:'Vídeo de apresentação',id:'1S9T33jJIvkDpOTYJlsPNoY9DesZlE8px'}
 };
 /* Universos: para incluir um vídeo novo, crie uma linha em V acima (marca, titulo e id do Drive) e coloque o nome dele na lista do universo. */
 const NICHOS=[
- {nome:'Maternidade',videos:[V.ferus,V.sunkids,V.anjo]},
- {nome:'Autocuidado',videos:[V.boti,V.floratta,V.ecle,V.gino,V.gym]},
- {nome:'Skincare',videos:[V.cerave,V.dove,V.nikole]},
- {nome:'Haircare',videos:[V.pant1,V.pant2,V.max1,V.max2,V.andreia]},
+ {nome:'Maternidade',videos:[V.ferus,V.sunkids,V.anjo,V.c_hidrat,V.c_carrinho,V.c_sabonete,V.c_oculosk,V.c_receita,V.c_salaokid]},
+ {nome:'Autocuidado',videos:[V.boti,V.floratta,V.ecle,V.gino,V.c_salao,V.gym]},
+ {nome:'Skincare',videos:[V.cerave,V.dove,V.c_protetor,V.c_kitfacial,V.c_botox,V.nikole]},
+ {nome:'Haircare',videos:[V.pant1,V.pant2,V.max1,V.max2,V.andreia,V.c_tonico,V.c_antiqueda]},
+ {nome:'Moda e Acessórios',videos:[V.c_vestido,V.c_colar,V.c_academia,V.c_calca]},
  {nome:'Casa e Organização',videos:[V.allnutri,V.neston,V.azulim,V.lava1,V.lava2]},
- {nome:'Experiências',videos:[V.intelivo,V.nikole,V.gym]},
- {nome:'Tecnologia e Conectividade',videos:[V.claro,V.validapay,V.meliuz]}
+ {nome:'Casal',videos:[V.p_diamond,V.p_act,V.p_clear,V.p_gym,V.c_rotina,V.c_pizza]},
+ {nome:'Experiências',videos:[V.c_gestante,V.c_clinica,V.c_personal,V.c_instal,V.c_vidro,V.c_pov,V.intelivo]},
+ {nome:'Tecnologia e Conectividade',videos:[V.claro,V.c_holasim,V.validapay,V.meliuz,V.c_iphone,V.c_micro,V.c_fone,V.c_tripe]},
+ {nome:'UGC Trip',videos:[V.c_trip]}
 ];
-const DESTAQUES=[V.apres,V.pant1,V.cerave];
+const DESTAQUES=[V.c_case,V.pant1,V.cerave];
 
 const playIcon='<svg width="14" height="14" viewBox="0 0 24 24" fill="#1E1A18" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>';
 function card(v){
   const b=document.createElement('button');
   b.type='button';b.className='vpola';b.setAttribute('aria-label','Assistir: '+v.marca+', '+v.titulo);
-  b.innerHTML='<span class="tela"><img alt="" loading="lazy" src="https://drive.google.com/thumbnail?id='+v.id+'&sz=w600"><span class="play">'+playIcon+'</span></span><span class="leg"><b>'+v.marca+'</b><small>'+v.titulo+'</small></span>';
-  const img=b.querySelector('img');img.onerror=()=>img.remove();
-  b.addEventListener('click',()=>abrir(v.id));
+  const thumb=v.src?'<video src="'+v.src+'#t=0.8" muted playsinline preload="metadata"></video>':'<img alt="" loading="lazy" src="https://drive.google.com/thumbnail?id='+v.id+'&sz=w600">';
+  b.innerHTML='<span class="tela">'+thumb+'<span class="play">'+playIcon+'</span></span><span class="leg"><b>'+v.marca+'</b><small>'+v.titulo+'</small></span>';
+  const img=b.querySelector('img');if(img)img.onerror=()=>img.remove();
+  b.addEventListener('click',()=>abrir(v));
   return b;
 }
 const abas=document.getElementById('abas'),trilho=document.getElementById('trilho'),tit=document.getElementById('uniTit');
@@ -605,10 +723,12 @@ mostra(0);
 document.getElementById('ant').onclick=()=>trilho.scrollBy({left:-trilho.clientWidth*.8,behavior:'smooth'});
 document.getElementById('prox').onclick=()=>trilho.scrollBy({left:trilho.clientWidth*.8,behavior:'smooth'});
 const dv=document.getElementById('destVideos');DESTAQUES.forEach(v=>dv.appendChild(card(v)));
+document.getElementById('apresVideo').appendChild(card(V.apres));document.getElementById('tripVideo').appendChild(card(V.c_trip));
 
 const modal=document.getElementById('modal'),mv=document.getElementById('modalVideo');
-function abrir(id){mv.src='https://drive.google.com/file/d/'+id+'/preview';modal.classList.add('aberto');document.getElementById('fechar').focus();}
-function fechar(){mv.src='about:blank';modal.classList.remove('aberto');}
+const mp=document.getElementById('modalMp4');
+function abrir(v){if(v.src){modal.classList.add('mp4');mp.src=v.src;mp.play().catch(()=>{});}else{modal.classList.remove('mp4');mv.src='https://drive.google.com/file/d/'+v.id+'/preview';}modal.classList.add('aberto');document.getElementById('fechar').focus();}
+function fechar(){mv.src='about:blank';mp.pause();mp.removeAttribute('src');modal.classList.remove('aberto');}
 document.getElementById('fechar').onclick=fechar;
 modal.addEventListener('click',e=>{if(e.target===modal)fechar();});
 addEventListener('keydown',e=>{if(e.key==='Escape'&&modal.classList.contains('aberto'))fechar();});
