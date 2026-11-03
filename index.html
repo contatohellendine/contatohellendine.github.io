@@ -393,6 +393,24 @@ h2{font-size:clamp(52px,7vw,96px)}
 footer b{font-family:var(--serif);letter-spacing:.04em}
 .modal .moldura{background:#fff}
 @media(max-width:880px){.case-grid,.quem,.contato-grid,.invest-box,.roteiro,.trip,.res-grid,.fb-grid{grid-template-columns:minmax(0,1fr)!important}h2{font-size:clamp(44px,13vw,72px);overflow-wrap:break-word}.case .res{font-size:30px}.case-videos .vpola{width:46%!important}}
+/* celular: capa lado a lado, igual ao computador */
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+@media(max-width:880px){
+.ed-hero{grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr)!important;min-height:min(150vw,640px)!important}
+.ed-foto{order:0!important;height:auto!important}
+.ed-t{padding:26px 12px 26px 16px!important;overflow:hidden}
+.ed-tag{font-size:8px;letter-spacing:1.5px;padding:5px 8px;white-space:normal}
+.ed h1{font-size:clamp(40px,14vw,110px)!important;margin-top:14px}
+.ed .frase{font-size:clamp(17px,5.4vw,28px);margin-top:14px}
+.ed .sub{font-size:12px;line-height:1.5;margin-top:8px}
+.ed .ctas{gap:8px;margin-top:16px;flex-direction:column;align-items:stretch}
+.ed .ctas .btn{min-height:40px;padding:0 10px;font-size:10px;letter-spacing:1.2px;justify-content:center}
+.faixa{font-size:24px;padding:10px 0}
+.ed-nums{grid-template-columns:repeat(4,1fr)!important}
+.ed-nums div{padding:18px 10px!important;border-bottom:0!important}
+.ed-nums b{font-size:30px!important}
+.ed-nums small{font-size:8px;letter-spacing:1px}
+}
 </style>
 </head>
 <body>
@@ -427,7 +445,7 @@ footer b{font-family:var(--serif);letter-spacing:.04em}
         <a href="#contato" class="btn claro">Vamos conversar</a>
       </div>
     </div>
-    <div class="ed-foto"><img src="foto-hero.jpg" alt="Hellen Dine sorrindo, de vestido rosa" fetchpriority="high"></div>
+    <div class="ed-foto"><img src="foto-hero.jpg?v=2" alt="Hellen Dine sorrindo, de vestido rosa" fetchpriority="high"></div>
   </div>
   <div class="faixa" aria-hidden="true"><div class="faixa-track" id="faixa">
     <span>conteúdo UGC</span><span>publi post</span><span>maternidade</span><span>UGC trip</span><span>skincare</span><span>unboxing</span><span>rotina real</span><span>storytelling</span><span>fotos lifestyle</span>
